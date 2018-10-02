@@ -61,6 +61,12 @@ export default {
       this._addLayer()
       if (this.listenUserEvents) {
         this.$_bindEvents(layerEvents)
+        this.map.on('mouseenter', this.layerId, () => {
+          this.map.getCanvas().style.cursor = 'pointer'
+        })
+        this.map.on('mouseleave', this.layerId, () => {
+          this.map.getCanvas().style.cursor = ''
+        })
       }
       this.map.off('dataloading', this.$_watchSourceLoading)
       this.initial = false
